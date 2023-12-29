@@ -1,33 +1,25 @@
-# パブリッシャーノード (janken_publisher.py)
-
 import rclpy
 from rclpy.node import Node
+from std_msgs.msg import String
 import random
 
-from std_msgs.msg import String
+class jankenpub():
+    def __init__(self, node):
+        self.publisher = node.create_publisher(String, 'janken_pub', 10)
+        node.create_timer(0.5, self.publish_janken_pub)
 
-class JankenPublisher(Node):
-
-    def __init__(self):
-        super().__init__('janken_publisher')
-        self.publisher_ = self.create_publisher(String, 'janken_topic', 10)
-        timer_period = 2  # seconds
-        self.timer = self.create_timer(timer_period, self.publish_janken)
-
-    def publish_janken(self):
-        janken_options = ['rock', 'paper', 'scissors']
-        selected_move = random.choice(janken_options)
+    def publish_janken_pub(self):
+        janken_option = ['rock', 'paper', 'scissors']
+        selected_move = random.choice(janken_option)
         msg = String()
         msg.data = selected_move
-        self.publisher_.publish(msg)
+        self.publisher.publish(msg)
 
-def main(args=None):
-    rclpy.init(args=args)
-    janken_publisher = JankenPublisher()
-    rclpy.spin(janken_publisher)
-    janken_publisher.destroy_node()
-    rclpy.shutdown()
+def main():
+    rclpy.init()
+    node = Node('janken_pub')
+    janken_pub = jankenpub(node)
+    rclpy.spin(node)
 
 if __name__ == '__main__':
     main()
-

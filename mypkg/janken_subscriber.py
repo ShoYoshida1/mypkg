@@ -1,41 +1,41 @@
-# サブスクライバーノード (janken_subscriber.py)
-
 import rclpy
 from rclpy.node import Node
-
 from std_msgs.msg import String
+import random
+import threading
+import sys
 
-class JankenSubscriber(Node):
-
-    def __init__(self):
-        super().__init__('janken_subscriber')
-        self.subscription = self.create_subscription(String,'janken_topic',self.callback,10)
-        print("waiting....")
+class jankensub():
+    def __init__(self, node):
+        self.publisher = node.create_subscription(String, 'janken_pub', self.callback, 10)
+        print("Waiting....")
 
     def callback(self, msg):
-        self.get_logger().info(f'Received')
-        user_input = input('Enter your move (rock, paper, scissors): ')
-        self.compare_moves(msg.data, user_input)
-
-    def compare_moves(self, publisher_move, user_move):
-        if publisher_move == user_move:
-            self.get_logger().info('It\'s a draw!')
+        publisher_move = msg.data
+        user_move = input('Enter your move (rock, paper, scissors): ')
+        print ("Received")
+        
+        if publisher_move== user_move:
+            print("It\'s a draw!")
         elif (
             (publisher_move == 'rock' and user_move == 'scissors') or
             (publisher_move == 'paper' and user_move == 'rock') or
             (publisher_move == 'scissors' and user_move == 'paper')
         ):
-            self.get_logger().info('You lose!')
-        else:
-            self.get_logger().info('You win!')
+            print("You lose!")
+        elif (
+            (publisher_move == 'rock' and user_move == 'paper') or
+            (publisher_move == 'paper' and user_move == 'scissors') or
+            (publisher_move == 'scissors' and user_move == 'rock')
+        ):
+            print("You win!")
+        
 
-def main(args=None):
-    rclpy.init(args=args)
-    janken_subscriber = JankenSubscriber()
-    rclpy.spin(janken_subscriber)
-    janken_subscriber.destroy_node()
-    rclpy.shutdown()
+def main():
+    rclpy.init()
+    node = Node('janken_sub')
+    janken_sub = jankensub(node)
+    rclpy.spin(node)
 
 if __name__ == '__main__':
     main()
-
