@@ -25,6 +25,8 @@ setup(
         'console_scripts': [
         'talker = mypkg.talker:main',
         'listener = mypkg.listener:main',
+        'janken_publisher = mypkg.janken_publisher:main',
+        'janken_subscriber = mypkg.janken_subscriber:main',
         ],
     },
 )
