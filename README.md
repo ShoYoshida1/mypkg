@@ -1,21 +1,21 @@
-#mypkg
+# mypkg
 [![test](https://github.com/ShoYoshida1/mypkg/actions/workflows/test.yml/badge.svg)](https://github.com/ShoYoshida1/mypkg/actions/workflows/test.yml)
 
 Ros2の課題及び練習リポジトリ
 
-##リポジトリ内のファイル詳細
+## リポジトリ内のファイル詳細
 
-###talker.py
+### talker.py
 
-###listener.py
+### listener.py
 
-###talk_listen.launch.py
+### talk_listen.launch.py
 
-###janken_subscriber.py
+### janken_subscriber.py
 
-###janken_publisher.py
+### janken_publisher.py
 
-##実行方法(talker-listener)
+## 実行方法(talker-listener)
 
 ```bash
 端末1$ ros2 run mypkg talker
@@ -48,7 +48,7 @@ $ ros2 launch mypkg talk_listen.launch.py
 ```
  終了するときは`Ctrl+C`を押してください
 
-##実行方法(janken_pubrisher-janken_subscriber)
+## 実行方法(janken_pubrisher-janken_subscriber)
 じゃんけんゲーム
 
 
