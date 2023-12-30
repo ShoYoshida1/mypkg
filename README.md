@@ -6,14 +6,19 @@ Ros2の課題及び練習リポジトリ
 ## リポジトリ内のファイル詳細
 
 ### talker.py
+数字をカウントしてトピック/countupを通じて送信するパブリッシャノード
 
 ### listener.py
+/countupからメッセージをもらって表示するサブスクライバノード
 
 ### talk_listen.launch.py
-
-### janken_subscriber.py
+talkerとlistenerの二つのノードを同時に起動するもの
 
 ### janken_publisher.py
+3種類のじゃんけん動きをトピック/janken_pubを通じてランダムに送信するパブリッシャノード
+
+### janken_subscriber.py
+/janken_pubからじゃんけんの手を受け取って記録し標準入力に使用者が手を入力したものと勝敗判定を行うノード
 
 ## 実行方法(talker-listener)
 
