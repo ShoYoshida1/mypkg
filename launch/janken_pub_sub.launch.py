@@ -9,6 +9,7 @@ def generate_launch_description():
       janken_publisher = launch_ros.actions.Node(
               package='mypkg',
               executable='janken_publisher',
+              output='screen'
               )
       janken_subscriber = launch_ros.actions.Node(
               package='mypkg',

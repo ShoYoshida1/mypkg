@@ -13,9 +13,9 @@ class jankensub():
         print("Waiting....")
 
     def callback(self, msg):
+        print ("Received")
         publisher_move = msg.data
         user_move = input('Enter your move (rock, paper, scissors): ')
-        print ("Received")
         
         if publisher_move== user_move:
             print("It\'s a draw!")
