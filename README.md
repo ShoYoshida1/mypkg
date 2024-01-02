@@ -1,24 +1,25 @@
 # mypkg
 [![test](https://github.com/ShoYoshida1/mypkg/actions/workflows/test.yml/badge.svg)](https://github.com/ShoYoshida1/mypkg/actions/workflows/test.yml)
 
-Ros2の課題及び練習リポジトリ
+ROS2の課題及び練習リポジトリ
+このリポジトリにはROS2を用いて数字をカウントするプログラムとランダムな手を受信しじゃんけんを行うことができるプログラムが含まれます。
 
 ## リポジトリ内のファイル詳細
 
 ### talker.py
-数字をカウントしてトピック/countupを通じて送信するパブリッシャノード
-
+* 数字をカウントしてトピック/countupを通じて送信するパブリッシャノード
+   * トピック/countupのメッセージの型は16ビットの符号付き整数の配列
 ### listener.py
-/countupからメッセージをもらって表示するサブスクライバノード
+* /countupからメッセージをもらって表示するサブスクライバノード
 
 ### talk_listen.launch.py
-talkerとlistenerの二つのノードを同時に起動するもの
-
+* talkerとlistenerの二つのノードを同時に起動するもの
+   
 ### janken_publisher.py
-3種類のじゃんけん動きをトピック/janken_pubを通じてランダムに送信し続けるパブリッシャノード
-
+* 3種類のじゃんけん動きをトピック/janken_pubを通じてランダムに送信し続けるパブリッシャノード
+   * トピック/janken_pubのメッセージの型はstr型の半角英数字
 ### janken_subscriber.py
-/janken_pubからじゃんけんの手を受け取って記録し標準入力に使用者が手を入力したものと勝敗判定を行うノード
+* /janken_pubからじゃんけんの手を受け取って記録し標準入力に使用者が手を入力したものと勝敗判定を行うノード
 
 ## 実行方法(talker-listener)
 
@@ -59,7 +60,7 @@ $ ros2 launch mypkg talk_listen.launch.py
 
 ```bash
 端末1$ ros2 run mypkg janken_publisher
-端末2$ ros2 run mypkg janken_publisher
+端末2$ ros2 run mypkg janken_subscriber
 Waiting....
 Enter your move (rock, paper, scissors):
 ```
@@ -67,13 +68,14 @@ Enter your move (rock, paper, scissors):
 
 ```bash
 Waiting....
+Recieved
 Enter your move (rock, paper, scissors):rock
 You win!
 ```
 終了するときは`Ctrl+C`を押してください
 
 ## 必須ソフト
-python
+* python
 
 ## テスト環境
 * ubuntu 20.04
